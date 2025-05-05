@@ -1,0 +1,61 @@
+<div class="register-container">
+    <mat-card>
+      <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+        <mat-card-title>Crear Cuenta</mat-card-title>
+  
+        <mat-form-field appearance="fill">
+          <mat-label>Identificación</mat-label>
+          <input matInput formControlName="identificacion" />
+          <mat-error *ngIf="registerForm.get('identificacion')?.hasError('required')">Este campo es obligatorio.</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill">
+          <mat-label>Primer Nombre</mat-label>
+          <input matInput formControlName="primerNombre" />
+          <mat-error *ngIf="registerForm.get('primerNombre')?.hasError('required')">Este campo es obligatorio.</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill">
+          <mat-label>Correo</mat-label>
+          <input matInput formControlName="correo" type="email" />
+          <mat-error *ngIf="registerForm.get('correo')?.hasError('required')">Este campo es obligatorio.</mat-error>
+          <mat-error *ngIf="registerForm.get('correo')?.hasError('email')">Correo inválido.</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill">
+          <mat-label>Contraseña</mat-label>
+          <input matInput formControlName="contrasena" type="password" />
+          <mat-error *ngIf="registerForm.get('contrasena')?.hasError('required')">Este campo es obligatorio.</mat-error>
+          <mat-error *ngIf="registerForm.get('contrasena')?.hasError('minlength')">La contraseña debe tener al menos 6 caracteres.</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill">
+          <mat-label>Confirmar Contraseña</mat-label>
+          <input matInput formControlName="confirmarContrasena" type="password" />
+          <mat-error *ngIf="registerForm.get('confirmarContrasena')?.hasError('required')">Este campo es obligatorio.</mat-error>
+          <mat-error *ngIf="registerForm.hasError('mismatch')">Las contraseñas no coinciden.</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill">
+          <mat-label>País</mat-label>
+          <mat-select formControlName="paisId">
+            <mat-option *ngFor="let pais of paises" [value]="pais.id">{{ pais.nombre }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="registerForm.get('paisId')?.hasError('required')">Este campo es obligatorio.</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill">
+          <mat-label>Ciudad</mat-label>
+          <mat-select formControlName="ciudadId">
+            <mat-option *ngFor="let ciudad of ciudades" [value]="ciudad.id">{{ ciudad.nombre }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="registerForm.get('ciudadId')?.hasError('required')">Este campo es obligatorio.</mat-error>
+        </mat-form-field>
+  
+        <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid">Registrarse</button>
+      </form>
+    </mat-card>
+  </div>
+  
+  
+  
