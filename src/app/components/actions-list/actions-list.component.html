@@ -1,0 +1,34 @@
+<div class="parent">
+  <div class="div1">
+    <div class="search-box">
+      <input 
+        type="text" 
+        class="search-input" 
+        placeholder="Buscar acción..." 
+        (input)="onSearch($event)"
+      >
+    </div>
+    <div class="actions-list">
+      <div *ngFor="let stock of filteredStocks" 
+           class="stock-item" 
+           (click)="onStockClick(stock)">
+        <div class="stock-header">
+          <span class="symbol" [innerHTML]="highlightText(stock.symbol, currentSearchTerm)"></span>
+          <span class="price">${{stock.price.toFixed(2)}}</span>
+        </div>
+        <div class="name" [innerHTML]="highlightText(stock.name, currentSearchTerm)"></div>
+        <div class="price-info">
+          <span [class]="getChangeClass(stock.change)">
+            {{stock.change >= 0 ? '+' : ''}}{{stock.change.toFixed(2)}} ({{stock.changePercent >= 0 ? '+' : ''}}{{stock.changePercent.toFixed(2)}}%)
+          </span>
+        </div>
+      </div>
+      <div *ngIf="filteredStocks.length === 0" class="no-results">
+        No se encontraron resultados
+      </div>
+    </div>
+  </div>
+  <div class="div2">
+    <app-trading-widget></app-trading-widget>
+  </div>
+</div>
