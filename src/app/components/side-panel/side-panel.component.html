@@ -1,0 +1,13 @@
+<div class="side-panel" (mouseenter)="showPanel()" (mouseleave)="hidePanel()">
+  <div class="panel-content" [class.show]="isVisible">
+    <div class="panel-header">
+      <h3>Menú</h3>
+    </div>
+    <div class="panel-actions">
+      <button class="action-button" (click)="logout()">
+        <i class="fas fa-sign-out-alt"></i>
+        Cerrar Sesión
+      </button>
+    </div>
+  </div>
+</div>

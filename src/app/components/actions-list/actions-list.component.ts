@@ -4,7 +4,9 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Observable, map, catchError, of, BehaviorSubject } from 'rxjs';
 import { StockService } from '../../services/stock.service';
-import {Store} from '@ngrx/store';
+import { Store } from '@ngrx/store';
+import { TradingActionsComponent } from '../trading-actions/trading-actions.component';
+import { SidePanelComponent } from '../side-panel/side-panel.component';
 
 interface Stock {
   symbol: string;
@@ -20,7 +22,9 @@ interface Stock {
   imports: [
     TradingViewComponent,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    TradingActionsComponent,
+    SidePanelComponent
   ],
   templateUrl: './actions-list.component.html',
   styles: [`
