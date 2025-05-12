@@ -8,15 +8,14 @@ export interface Usuario {
     primerApellido: string;
     segundoApellido?: string;
     correo: string;
+    saldo:number;
     contrasena: string;
     direccion: string;
     telefono: string;
     numeroLicencia: string;
-    rolId?: number;
-    ciudadId?: number;
-    rol?: Rol;
-    ciudad?: Ciudad;
-    createdAt?: string;
-    updateAt?: string;
-    deletedAt?: string | null;
+    rol?: number;
+    ciudad?: number;
+    
+    
+    
 } 

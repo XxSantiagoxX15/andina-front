@@ -8,12 +8,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';  // Asegúrate de que esto esté aquí
-import { Usuario } from '../../models/usuario.model';
+import { HttpClientModule } from '@angular/common/http';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 import { UbicacionService } from '../../services/ubicacion.service';
 import { Pais } from '../../models/pais.model';
 import { Ciudad } from '../../models/ciudad.model';
-import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-register-user',
@@ -21,16 +21,17 @@ import { MatSelectModule } from '@angular/material/select';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    HttpClientModule,  // Asegúrate de incluir HttpClientModule aquí
+    HttpClientModule,
     MatInputModule,
     MatCardModule,
     MatButtonModule,
-    RouterModule,
-    MatSelectModule
+    MatFormFieldModule,
+    MatSelectModule,
+    RouterModule
   ],
   templateUrl: './create-account.component.html',
   styleUrls: ['./create-account.component.css'],
-  providers: [UbicacionService] // Si UbicacionService no es un servicio global, debes declararlo aquí
+  providers: [UbicacionService]
 })
 export class RegisterUserComponent implements OnInit {
   registerForm!: FormGroup;
@@ -45,6 +46,7 @@ export class RegisterUserComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // Inicializa el formulario sin saldo, rolId ni numeroLicencia
     this.registerForm = this.fb.group({
       identificacion: ['', Validators.required],
       primerNombre: ['', Validators.required],
@@ -52,17 +54,15 @@ export class RegisterUserComponent implements OnInit {
       primerApellido: ['', Validators.required],
       segundoApellido: [''],
       correo: ['', [Validators.required, Validators.email]],
-      saldo: [0, [Validators.required, Validators.min(0)]],
       contrasena: ['', [Validators.required, Validators.minLength(6)]],
-      confirmarContrasena: ['', [Validators.required]],
+      confirmarContrasena: ['', Validators.required],
       direccion: ['', Validators.required],
       telefono: ['', Validators.required],
-      numeroLicencia: ['', Validators.required],
-      rolId: [null],
       paisId: [null, Validators.required],
-      ciudadId: [null, Validators.required]
-    });
+      ciudad: [null, Validators.required]
+    }, { validators: this.passwordMatchValidator });
 
+    // Cargar los países al iniciar
     this.cargarPaises();
 
     // Reaccionar a cambios en el país seleccionado
@@ -76,6 +76,11 @@ export class RegisterUserComponent implements OnInit {
     });
   }
 
+  passwordMatchValidator(form: FormGroup) {
+    return form.get('contrasena')?.value === form.get('confirmarContrasena')?.value
+      ? null : { passwordMismatch: true };
+  }
+
   cargarPaises(): void {
     this.ubicacionService.getPaises().subscribe({
       next: (data) => this.paises = data,
@@ -85,7 +90,10 @@ export class RegisterUserComponent implements OnInit {
 
   cargarCiudades(paisId: number): void {
     this.ubicacionService.getCiudadesPorPais(paisId).subscribe({
-      next: (data) => this.ciudades = data,
+      next: (data) => {
+        this.ciudades = data;
+        console.log('Ciudades cargadas', data);
+      },
       error: (err) => console.error('Error al cargar ciudades', err)
     });
   }
@@ -96,16 +104,24 @@ export class RegisterUserComponent implements OnInit {
       return;
     }
 
-    const usuario = { ...this.registerForm.value };
+    // Crear el objeto usuario con los valores del formulario
+    const usuario = {
+      ...this.registerForm.value,
+      saldo: 0, // Siempre 0
+      rol: 1, // Siempre 1
+      numeroLicencia: null // Siempre null
+    };
+    // Eliminar confirmarContrasena antes de enviar
     delete usuario.confirmarContrasena;
 
-    this.http.post('http://localhost:8090/auth/register', usuario, { responseType: 'text' }).subscribe({
+    this.http.post('http://localhost:8080/auth/register', usuario, { responseType: 'text' }).subscribe({
       next: (response) => {
         console.log('Respuesta del backend:', response);
         if (response === 'Usuario guardado con éxito') {
           alert('Usuario registrado exitosamente');
           this.router.navigate(['/login']);
         } else {
+           console.log(usuario)
           alert('Respuesta inesperada del servidor: ' + response);
         }
       },
@@ -116,7 +132,9 @@ export class RegisterUserComponent implements OnInit {
         } else if (error.status === 400 && error.error?.includes("correo")) {
           alert('El correo ya está en uso o es inválido.');
         } else {
+          console.log(usuario)
           alert('Error: ' + (error.message || error.statusText));
+
         }
       }
     });

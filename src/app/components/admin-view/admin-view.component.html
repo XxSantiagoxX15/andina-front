@@ -1,0 +1,107 @@
+<div class="panel-header">
+    <div class="user-info">
+      <span>Bienvenido, {{ primerNombre }} {{ primerApellido }}</span>
+    </div>
+    <div class="logout-button">
+      <button mat-button (click)="logout()">Cerrar sesión</button>
+    </div>
+  </div>
+
+<div class="usuarios-seccion">
+    <h2>Administradores</h2>
+    <div class="tabla-contenedor">
+      <table class="tabla-usuarios">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Rol</th>
+            <th>Saldo</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let usuario of usuariosRol1">
+            <td>{{ usuario.primerNombre }} {{ usuario.primerApellido }}</td>
+            <td>{{ usuario.correo }}</td>
+            <td>
+              <select [(ngModel)]="usuario.rol">
+                <option [value]="1">Administrador</option>
+                <option [value]="2">Accionista</option>
+                <option [value]="3">Comisionista</option>
+              </select>
+            </td>
+            <td><input type="number" [(ngModel)]="usuario.saldo" /></td>
+            <td><button (click)="actualizarUsuario(usuario)">Guardar</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <div class="usuarios-seccion">
+    <h2>Accionistas</h2>
+    <div class="tabla-contenedor">
+      <table class="tabla-usuarios">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Rol</th>
+            <th>Saldo</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let usuario of usuariosRol2">
+            <td>{{ usuario.primerNombre }} {{ usuario.primerApellido }}</td>
+            <td>{{ usuario.correo }}</td>
+            <td>
+              <select [(ngModel)]="usuario.rol">
+                <option [value]="1">Administrador</option>
+                <option [value]="2">Accionista</option>
+                <option [value]="3">Comisionista</option>
+              </select>
+            </td>
+            <td><input type="number" [(ngModel)]="usuario.saldo" /></td>
+            <td><button (click)="actualizarUsuario(usuario)">Guardar</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <div class="usuarios-seccion">
+    <h2>Comisionistas</h2>
+    <div class="tabla-contenedor">
+      <table class="tabla-usuarios">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Rol</th>
+            <th>Saldo</th>
+            <th>Licencia</th> <!-- Nueva columna para la licencia -->
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let usuario of usuariosRol3">
+            <td>{{ usuario.primerNombre }} {{ usuario.primerApellido }}</td>
+            <td>{{ usuario.correo }}</td>
+            <td>
+              <select [(ngModel)]="usuario.rol">
+                <option [value]="1">Administrador</option>
+                <option [value]="2">Accionista</option>
+                <option [value]="3">Comisionista</option>
+              </select>
+            </td>
+            <td><input type="number" [(ngModel)]="usuario.saldo" /></td>
+            <td><input type="text" [(ngModel)]="usuario.numeroLicencia" /></td> <!-- Campo para la licencia -->
+            <td><button (click)="actualizarUsuario(usuario)">Guardar</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

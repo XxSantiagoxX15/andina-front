@@ -17,6 +17,6 @@ export class UbicacionService {
   }
 
   getCiudadesPorPais(paisId: number): Observable<Ciudad[]> {
-    return this.http.get<Ciudad[]>(`${this.baseUrl}/ciudades/pais/${paisId}`);
+    return this.http.get<Ciudad[]>(`${this.baseUrl}/ciudad/pais/${paisId}`);
   }
 }
