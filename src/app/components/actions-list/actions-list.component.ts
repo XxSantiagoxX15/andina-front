@@ -1,12 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { TradingViewComponent } from '../trading-view/trading-view.component';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Observable, map, catchError, of, BehaviorSubject } from 'rxjs';
-import { StockService } from '../../services/stock.service';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { TradingActionsComponent } from '../trading-actions/trading-actions.component';
+import { setSelectedStock } from '../../store/stock/stock.actions';
 import { SidePanelComponent } from '../side-panel/side-panel.component';
+import { TradingActionsComponent } from '../trading-actions/trading-actions.component';
+import { TradingViewComponent } from '../trading-view/trading-view.component';
 
 interface Stock {
   symbol: string;
@@ -145,8 +144,7 @@ export class ActionsListComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private stockService: StockService,
-    private store : Store
+    private store: Store
   ) {}
 
   ngOnInit() {
@@ -298,7 +296,7 @@ export class ActionsListComponent implements OnInit {
 
   onStockClick(stock: Stock): void {
     console.log(`Acción seleccionada: ${stock.symbol}`);
-    this.stockService.setSelectedStock(stock.symbol);
+    this.store.dispatch(setSelectedStock({ symbol: stock.symbol }));
   }
 
   getChangeClass(change: number | undefined): string {

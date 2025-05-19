@@ -1,16 +1,16 @@
 <div class="parent">
   <div class="div1">
     <div class="search-box">
-      <input 
-        type="text" 
-        class="search-input" 
-        placeholder="Buscar acción..." 
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Buscar acción..."
         (input)="onSearch($event)"
       >
     </div>
     <div class="actions-list">
-      <div *ngFor="let stock of filteredStocks" 
-           class="stock-item" 
+      <div *ngFor="let stock of filteredStocks"
+           class="stock-item"
            (click)="onStockClick(stock)">
         <div class="stock-header">
           <span class="symbol" [innerHTML]="highlightText(stock.symbol, currentSearchTerm)"></span>

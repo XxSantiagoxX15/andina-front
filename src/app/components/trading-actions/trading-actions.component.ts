@@ -1,7 +1,9 @@
-import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { StockService } from '../../services/stock.service';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { StockService } from '../../services/stock.service';
+import { selectSelectedSymbol } from '../../store/stock/stock.selectors';
 
 export interface Order {
   id: string;
@@ -27,15 +29,16 @@ export class TradingActionsComponent implements OnInit {
   currentPrice = 150.00;
   quantity = 1;
   orders: Order[] = [];
-  isComisionista: boolean = true;
+  isComisionista: boolean = false;
 
   constructor(
     private stockService: StockService,
+    private store: Store,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   ngOnInit() {
-    this.stockService.selectedStock$.subscribe(symbol => {
+    this.store.select(selectSelectedSymbol).subscribe(symbol => {
       this.currentSymbol = symbol;
       // Aquí podrías actualizar el precio actual basado en el símbolo
     });
