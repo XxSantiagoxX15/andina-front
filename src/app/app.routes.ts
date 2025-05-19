@@ -4,6 +4,7 @@ import {TradingViewComponent} from './components/trading-view/trading-view.compo
 import {ActionsListComponent} from './components/actions-list/actions-list.component';
 import { LoginComponent } from './components/login/login.component';
 import { AdminComponent } from './components/admin-view/admin-view.component';
+import { company } from './components/company/company.component';
 
 
 export const routes: Routes = [
@@ -23,6 +24,10 @@ export const routes: Routes = [
       {
         path: 'admin',
         component: AdminComponent
+      },
+      {
+        path: 'company',
+        component: company
       },
 ];
 

@@ -1,0 +1,63 @@
+<!-- company.component.html -->
+<div class="panel-header">
+  <div class="user-info">
+    <span>Bienvenido, {{ primerNombre }} {{ primerApellido }}</span>
+  </div>
+  <div class="logout-button">
+    <button class="logout-btn" mat-button (click)="logout()">Cerrar sesión</button>
+  </div>
+</div>
+
+<h2>Gestión de Sectores Económicos</h2>
+<div style="margin-bottom: 1rem;">
+  <button mat-raised-button color="primary" (click)="abrirDialogSector()">Crear Nuevo Sector</button>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Descripción</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let sector of sectoresEconomicos">
+      <td>{{ sector.id }}</td>
+      <td>{{ sector.nombre }}</td>
+      <td>{{ sector.descripcion }}</td>
+      <td>
+        <button mat-button (click)="abrirDialogSector(sector)">Editar</button>
+        <button mat-button color="warn" (click)="eliminarSector(sector.id)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Gestión de Empresas</h2>
+<div style="margin-bottom: 1rem;">
+  <button mat-raised-button color="primary" (click)="abrirDialog()">Crear Nueva Empresa</button>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Descripción</th>
+      <th scope="col">Sector Económico</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let empresa of empresas">
+      <td>{{ empresa.id }}</td>
+      <td>{{ empresa.nombre }}</td>
+      <td>{{ empresa.descripcion }}</td>
+      <td>{{ getSectorNombre(empresa.sector_economico_id!) }}</td>
+      <td>
+        <button mat-button (click)="abrirDialog(empresa)">Editar</button>
+        <button mat-button color="warn" (click)="eliminarEmpresa(empresa.id)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
