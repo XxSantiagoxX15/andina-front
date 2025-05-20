@@ -5,13 +5,14 @@ import { HttpHeaders } from '@angular/common/http';
 import { Usuario } from '../../models/usuario.model';
 import { AdminService } from '../../services/admin.service';
 import { loginService } from '../../services/login.service';
+import { NavbarComponent } from '../../navbar/navbar.component';
 import { Router } from '@angular/router';
 @Component({
   standalone: true,
   selector: 'app-admin',
   templateUrl: './admin-view.component.html',
   styleUrls: ['./admin-view.component.css'],
-  imports: [CommonModule, FormsModule] 
+  imports: [CommonModule, FormsModule,NavbarComponent] 
 })
 export class AdminComponent implements OnInit {
   primerNombre: string | null = localStorage.getItem('primerNombre');

@@ -73,11 +73,11 @@ table {
   .user-info span {
     font-size: 1rem;
     font-weight: bold;
-    color: white; /* ✅ Texto blanco */
+    color: white; 
   }
   
   .logout-btn {
-    background-color: #f44336; /* Rojo */
+    background-color: #f44336; 
     color: white;
     border: none;
     border-radius: 6px;

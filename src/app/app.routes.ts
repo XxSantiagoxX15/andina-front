@@ -4,7 +4,8 @@ import {TradingViewComponent} from './components/trading-view/trading-view.compo
 import {ActionsListComponent} from './components/actions-list/actions-list.component';
 import { LoginComponent } from './components/login/login.component';
 import { AdminComponent } from './components/admin-view/admin-view.component';
-import { company } from './components/company/company.component';
+import { CompanyComponent } from './components/company/company.component';
+import { AuditoriaComponent } from './components/auditoria/auditoria.component';
 
 
 export const routes: Routes = [
@@ -27,7 +28,11 @@ export const routes: Routes = [
       },
       {
         path: 'company',
-        component: company
+        component: CompanyComponent
+      },
+      {
+        path: 'auditoria',
+        component: AuditoriaComponent
       },
 ];
 

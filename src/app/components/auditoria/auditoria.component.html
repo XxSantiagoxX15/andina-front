@@ -1,0 +1,38 @@
+<app-navbar></app-navbar>
+<div class="panel-header">
+  <div class="user-info">
+    <span>Bienvenido, {{ primerNombre }} {{ primerApellido }}</span>
+  </div>
+  <div class="logout-button">
+    <button class="logout-btn" mat-button (click)="logout()">Cerrar sesión</button>
+  </div>
+</div>
+
+<h2>Gestión de Auditorías</h2>
+<div *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</div>
+<div *ngIf="!auditorias && !errorMessage">Cargando...</div>
+<table mat-table [dataSource]="auditorias" class="mat-elevation-z8">
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>ID</th>
+    <td mat-cell *matCellDef="let auditoria">{{ auditoria.id }}</td>
+  </ng-container>
+  <ng-container matColumnDef="accion">
+    <th mat-header-cell *matHeaderCellDef>Acción</th>
+    <td mat-cell *matCellDef="let auditoria">{{ auditoria.accion }}</td>
+  </ng-container>
+  <ng-container matColumnDef="descripcion">
+    <th mat-header-cell *matHeaderCellDef>Descripción</th>
+    <td mat-cell *matCellDef="let auditoria">{{ auditoria.descripcion }}</td>
+  </ng-container>
+  <ng-container matColumnDef="fechaHora">
+    <th mat-header-cell *matHeaderCellDef>Fecha y Hora</th>
+    <td mat-cell *matCellDef="let auditoria">{{ auditoria.fechaHora | date:'medium' }}</td>
+  </ng-container>
+  <ng-container matColumnDef="usuario">
+    <th mat-header-cell *matHeaderCellDef>Usuario</th>
+    <td mat-cell *matCellDef="let auditoria">{{ auditoria.usuario }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
