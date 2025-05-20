@@ -29,7 +29,7 @@ export class TradingActionsComponent implements OnInit {
   currentPrice = 150.00;
   quantity = 1;
   orders: Order[] = [];
-  isComisionista: boolean = false;
+  isComisionista: boolean = true;
 
   constructor(
     private stockService: StockService,

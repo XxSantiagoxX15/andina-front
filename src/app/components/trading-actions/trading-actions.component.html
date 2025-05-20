@@ -1,73 +1,66 @@
-    <div class="trading-actions-container">
-      @if (!isComisionista){
-        <div class="action-buttons">
-          <button class="buy-button" (click)="onBuyClick()">BUY</button>
-          <button class="sell-button" (click)="onSellClick()">SELL</button>
-        </div>
-      }
-      <div class="order-ticket" *ngIf="showOrderTicket">
+<div class="trading-actions-container">
+    @if (!isComisionista){
+    <div class="action-buttons">
+        <button class="buy-button" (click)="onBuyClick()">BUY</button>
+        <button class="sell-button" (click)="onSellClick()">SELL</button>
+    </div>
+    }
+    <div class="order-ticket" *ngIf="showOrderTicket">
         <div class="ticket-header">
-          <span class="ticket-type" [class.buy]="orderType === 'BUY'" [class.sell]="orderType === 'SELL'">
+            <span class="ticket-type" [class.buy]="orderType === 'BUY'" [class.sell]="orderType === 'SELL'">
             {{orderType}}
           </span>
-          <span class="ticket-symbol">{{currentSymbol}}</span>
+            <span class="ticket-symbol">{{currentSymbol}}</span>
         </div>
         <div class="ticket-details">
-          <div class="ticket-row">
-            <span>Precio:</span>
-            <span>${{currentPrice}}</span>
-          </div>
-          <div class="ticket-row">
-            <span>Cantidad:</span>
-            <input type="number" [(ngModel)]="quantity" min="1" class="quantity-input">
-          </div>
-          <div class="ticket-row total">
-            <span>Total:</span>
-            <span>${{(currentPrice * quantity).toFixed(2)}}</span>
-          </div>
-          <div class="ticket-row">
-            <button class="accept-button"
-                    [ngClass]="{ 'buy': orderType === 'BUY', 'sell': orderType === 'SELL' }"
-                    (click)="onAcceptOrder()">
+            <div class="ticket-row">
+                <span>Precio:</span>
+                <span>${{currentPrice}}</span>
+            </div>
+            <div class="ticket-row">
+                <span>Cantidad:</span>
+                <input type="number" [(ngModel)]="quantity" min="1" class="quantity-input">
+            </div>
+            <div class="ticket-row total">
+                <span>Total:</span>
+                <span>${{(currentPrice * quantity).toFixed(2)}}</span>
+            </div>
+            <div class="ticket-row">
+                <button class="accept-button" [ngClass]="{ 'buy': orderType === 'BUY', 'sell': orderType === 'SELL' }" (click)="onAcceptOrder()">
               Aceptar
             </button>
-          </div>
+            </div>
         </div>
-      </div>
     </div>
+</div>
 
-    <div class="orders-list" *ngIf="orders.length > 0">
-      <h3>Órdenes realizadas</h3>
-      <div *ngFor="let order of orders" class="order-item" [class.buy]="order.type === 'BUY'" [class.sell]="order.type === 'SELL'">
+<div class="orders-list" *ngIf="orders.length > 0">
+    <h3>Órdenes realizadas</h3>
+    <div *ngFor="let order of orders" class="order-item" [class.buy]="order.type === 'BUY'" [class.sell]="order.type === 'SELL'">
         <div class="order-header">
-          <span class="order-type">{{order.type}}</span>
-          <span class="order-symbol">{{order.symbol}}</span>
-          <span class="order-date">{{order.date}}</span>
-
-          @if(!isComisionista){
-            <button class="delete-order" (click)="deleteOrder(order.id)">✕</button>
-          } @else {
-            //cambiar metodos
+            <span class="order-type">{{order.type}}</span>
+            <span class="order-symbol">{{order.symbol}}</span>
+            <span class="order-date">{{order.date}}</span> @if(!isComisionista){
+            <button class="delete-order" (click)="deleteOrder(order.id)">✕</button> } @else {
             <button class="buy-button" (click)="onBuyClick()">BUY</button>
             <button class="sell-button" (click)="onSellClick()">CLOSE</button>
-            <button class="comment-button" (click)="openCommentPopup()">💬 Comentar</button>
-          }
+            <button class="comment-button" (click)="openCommentPopup()">💬 Comentar</button> }
 
-          <div class="comment-modal" *ngIf="showCommentPopup">
-            <div class="modal-content">
-              <h3>Escribe tu comentario</h3>
-              <textarea [(ngModel)]="comentario" rows="4" cols="50"></textarea>
-              <br>
-              <button (click)="submitComment()">Enviar</button>
-              <button (click)="closeCommentPopup()">Cancelar</button>
+            <div class="comment-modal" *ngIf="showCommentPopup">
+                <div class="modal-content">
+                    <h3>Escribe tu comentario</h3>
+                    <textarea [(ngModel)]="comentario" rows="4" cols="50"></textarea>
+                    <br>
+                    <button (click)="submitComment()">Enviar</button>
+                    <button (click)="closeCommentPopup()">Cancelar</button>
+                </div>
             </div>
-          </div>
 
         </div>
         <div class="order-details">
-          <span>Precio: ${{order.price}}</span>
-          <span>Cantidad: {{order.quantity}}</span>
-          <span>Total: ${{order.total.toFixed(2)}}</span>
+            <span>Precio: ${{order.price}}</span>
+            <span>Cantidad: {{order.quantity}}</span>
+            <span>Total: ${{order.total.toFixed(2)}}</span>
         </div>
-      </div>
     </div>
+</div>
