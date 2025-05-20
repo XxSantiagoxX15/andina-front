@@ -1,6 +1,7 @@
-import { Component, PLATFORM_ID, Inject } from '@angular/core';
-import { Router } from '@angular/router';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { Router } from '@angular/router';
+import { loginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-side-panel',
@@ -14,7 +15,8 @@ export class SidePanelComponent {
 
   constructor(
     private router: Router,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private loginService: loginService
   ) {}
 
   showPanel() {
@@ -26,9 +28,11 @@ export class SidePanelComponent {
   }
 
   logout() {
-    if (isPlatformBrowser(this.platformId)) {
-      localStorage.clear();
-    }
-    this.router.navigate(['login']);
+    this.loginService.logout();
+    this.router.navigate(['/login']).then(() => {
+      if (isPlatformBrowser(this.platformId)) {
+        window.location.reload();
+      }
+    });
   }
 }

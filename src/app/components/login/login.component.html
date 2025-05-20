@@ -1,60 +1,54 @@
 <div class="example-card">
     <div class="form-container">
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="example-form">
-        <mat-card>
-          <mat-card-header>
-            <div mat-card-avatar class="img"></div>
-            <mat-card-title style="font-weight: 600; font-size: xx-large;">
-              Iniciar Sesión
-              <img src="assets/form.png" alt="form image">
-            </mat-card-title>
-            <p>Por favor ingresa tus credenciales</p>
-          </mat-card-header>
-  
-          <mat-card-content>
-            <div class="form">
-              <mat-form-field class="form-cred">
-                <mat-label>Email</mat-label>
-                <input matInput formControlName="correo" type="email" placeholder="Ingresa tu correo" required />
-                <mat-error *ngIf="loginForm.get('correo')?.hasError('required')">
-                  Este campo es obligatorio.
-                </mat-error>
-                <mat-error *ngIf="loginForm.get('correo')?.hasError('email')">
-                  Correo electrónico inválido
-                </mat-error>
-              </mat-form-field>
-  
-              <mat-form-field class="form-cred">
-                <mat-label>Contraseña</mat-label>
-                <input matInput formControlName="password" type="password" placeholder="Ingresa tu contraseña" required />
-                <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
-                  La contraseña es obligatoria
-                </mat-error>
-                <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">
-                  La contraseña debe tener al menos 6 caracteres
-                </mat-error>
-              </mat-form-field>
-            </div>
-  
-            <div *ngIf="errorMessage" class="error-message">
-              {{ errorMessage }}
-            </div>
-          </mat-card-content>
-  
-          <mat-card-actions>
-            <p style="text-align: center; margin-bottom: 10px;">
-              ¿No tienes una cuenta? 
-              <a [routerLink]="['/register']" style="font-weight: 500;">Crear Cuenta</a>
-            </p>
-            <button mat-flat-button color="primary" class="form-cred" type="submit" [disabled]="loginForm.invalid">
-              Iniciar Sesión
-            </button>
-          </mat-card-actions>
-        </mat-card>
-      </form>
-  
-      <div class="right-img">
-        <img src="assets/img.png" style="border-radius: 30px;" title="musulman's.kbom">
-      </div>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="example-form">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>
+                        ANDINA TRADING
+                    </mat-card-title>
+                    <p>Ingresa tus credenciales para acceder</p>
+                </mat-card-header>
+
+                <mat-card-content>
+                    <div class="form">
+                        <mat-form-field class="form-cred">
+                            <mat-label>Email</mat-label>
+                            <input matInput formControlName="correo" type="email" placeholder="Ingresa tu correo" required />
+                            <mat-error *ngIf="loginForm.get('correo')?.hasError('required')">
+                                Este campo es obligatorio.
+                            </mat-error>
+                            <mat-error *ngIf="loginForm.get('correo')?.hasError('email')">
+                                Correo electrónico inválido
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="form-cred">
+                            <mat-label>Contraseña</mat-label>
+                            <input matInput formControlName="password" type="password" placeholder="Ingresa tu contraseña" required />
+                            <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+                                La contraseña es obligatoria
+                            </mat-error>
+                            <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">
+                                La contraseña debe tener al menos 6 caracteres
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div *ngIf="errorMessage" class="error-message">
+                        {{ errorMessage }}
+                    </div>
+                </mat-card-content>
+
+                <mat-card-actions>
+                    <button mat-flat-button color="primary" class="form-cred" type="submit" [disabled]="loginForm.invalid">
+                        Iniciar Sesión
+                    </button>
+                    <p>
+                        ¿No tienes una cuenta?
+                        <a [routerLink]="['/register']">Crear Cuenta</a>
+                    </p>
+                </mat-card-actions>
+            </mat-card>
+        </form>
     </div>
-  </div>
+</div>

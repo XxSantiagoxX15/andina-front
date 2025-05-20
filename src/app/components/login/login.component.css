@@ -1,95 +1,61 @@
 .example-card {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    text-align: center;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
     width: 100%;
-    max-width: 1400px;
-    min-width: 300px;
-    margin: 0 auto;
-    padding: 10px;
+    background: linear-gradient(135deg, #1a1f2c 0%, #2a3142 100%);
+    padding: 20px;
     box-sizing: border-box;
-    background-color: #131722;
 }
 
 mat-card {
     width: 100%;
-    max-width: 1200px;
+    max-width: 450px;
     margin: 0 auto;
-    padding: 10px;
-    background-color: #131722;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box;
+    padding: 40px 30px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 mat-card-header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #131722;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 mat-card-title {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    font-size: 28px;
     font-weight: 600;
-    font-size: xx-large;
     color: #ffffff;
-}
-
-mat-card-title img {
-    width: 40px;
-    height: 40px;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
 }
 
 mat-card-header p {
-    margin: 10px 0 3%;
-    color: #ffffff;
-    font-size: 16px;
-}
-
-mat-card-avatar.img {
-    /*background-image: url('assets/avatar.png');*/
-    background-size: cover;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
+    color: #a0a3a9;
+    font-size: 15px;
+    margin: 0;
 }
 
 .form-container {
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
     width: 100%;
-    margin-top: 20px;
+    max-width: 450px;
 }
 
 .example-form {
+    width: 100%;
+}
+
+.form {
     display: flex;
     flex-direction: column;
-    padding: 4%;
-    width: 100%;
-    max-width: 900px;
-    box-sizing: border-box;
-    margin: 0 auto;
-}
-
-.example-full-width {
-    width: 100%;
-}
-
-table.example-full-width {
-    width: 100%;
-    margin: 0 auto;
-}
-
-table.example-full-width td {
-    padding-right: 8px;
-}
-
-mat-form-field.example-full-width {
+    gap: 20px;
     width: 100%;
 }
 
@@ -97,143 +63,98 @@ mat-form-field {
     width: 100%;
 }
 
-mat-form-field mat-label {
-    color: #000000;
+mat-form-field .mat-form-field-wrapper {
+    padding-bottom: 0;
 }
 
-mat-form-field input,
-mat-form-field mat-select {
-    font-size: 16px;
+mat-form-field mat-label {
+    color: #a0a3a9;
+}
+
+mat-form-field input {
+    color: #ffffff;
+    font-size: 15px;
+}
+
+mat-form-field .mat-form-field-outline {
+    color: rgba(255, 255, 255, 0.1);
+}
+
+mat-form-field:hover .mat-form-field-outline {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+mat-form-field.mat-focused .mat-form-field-outline {
+    color: #2196f3;
 }
 
 mat-error {
     font-size: 12px;
-    color: #d32f2f;
-}
-
-.form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 60%;
-    margin: auto;
-}
-
-.form-cred {
-    width: 100%;
+    color: #f44336;
 }
 
 button[mat-flat-button].form-cred {
     width: 100%;
-    height: 50px;
-    border-radius: 20px;
-    background-color: #1976d2;
-    color: rgb(6, 6, 6);
-    font-weight: 600;
-    border: none;
-    transition: background-color 0.3s ease;
-    margin-top: 15px;
+    height: 48px;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #2196f3 0%, #1976d2 100%);
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    margin-top: 20px;
 }
 
 button[mat-flat-button].form-cred:hover:not([disabled]) {
-    background-color: #1565c0;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
 }
 
 button[mat-flat-button][disabled] {
-    background-color: #020101;
-    color: #f4f2f2;
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.5);
 }
 
 mat-card-actions {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 mat-card-actions p {
-    margin-bottom: 10px;
-    font-weight: 500;
-    font-size: 16px;
-    text-align: center;
-    color: #f4eeee;
+    color: #a0a3a9;
+    font-size: 14px;
+    margin: 0;
 }
 
 mat-card-actions a {
-    color: #1976d2;
+    color: #2196f3;
     text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
 }
 
 mat-card-actions a:hover {
-    text-decoration: underline;
+    color: #1976d2;
 }
 
-.right-img {
-    display: block;
-    margin-top: 5%;
-    height: auto;
-    max-height: 100%;
-}
-
-.right-img img {
-    width: 100%;
-    max-width: 500px;
-    height: auto;
-    border-radius: 30px;
-    object-fit: cover;
-}
-
-@media (max-width: 1024px) {
-    .example-form {
-        padding: 20px;
-    }
-
-    table.example-full-width {
-        width: 100%;
-    }
-
-    table.example-full-width td {
-        display: block;
-        width: 100%;
-        padding-right: 0;
-        margin-bottom: 10px;
-    }
-
-    table.example-full-width tr {
-        display: flex;
-        flex-direction: column;
-    }
+.error-message {
+    color: #f44336;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
 }
 
 @media (max-width: 600px) {
     .example-card {
-        padding: 10px;
+        padding: 15px;
     }
-
-    .example-form {
-        padding: 10px;
+    mat-card {
+        padding: 30px 20px;
     }
-
-    table.example-full-width {
-        width: 100%;
-    }
-
-    table.example-full-width td {
-        display: block;
-        width: 100%;
-        padding-right: 0;
-        margin-bottom: 10px;
-    }
-
-    table.example-full-width tr {
-        display: block;
-    }
-
-    .form {
-        width: 100%;
-    }
-
-    .right-img {
-        display: none;
+    mat-card-title {
+        font-size: 24px;
     }
 }

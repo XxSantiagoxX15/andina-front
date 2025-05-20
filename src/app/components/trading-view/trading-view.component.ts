@@ -57,7 +57,11 @@ export class TradingViewComponent implements AfterViewInit, OnDestroy {
 
   private initWidget(symbol: string) {
     if (this.widget) {
-      this.widget.remove();
+      try {
+        this.widget.remove();
+      } catch (error) {
+        console.warn('Error removing widget:', error);
+      }
       this.widget = null;
     }
     const userTimezone: Timezone = Intl.DateTimeFormat().resolvedOptions().timeZone as Timezone;
@@ -129,7 +133,12 @@ export class TradingViewComponent implements AfterViewInit, OnDestroy {
       this.subscription.unsubscribe();
     }
     if (this.widget) {
-      this.widget.remove();
+      try {
+        this.widget.remove();
+      } catch (error) {
+        console.warn('Error removing widget during component destruction:', error);
+      }
+      this.widget = null;
     }
   }
 }

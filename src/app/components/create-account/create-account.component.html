@@ -3,10 +3,8 @@
         <form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="example-form">
             <mat-card>
                 <mat-card-header>
-                    <div mat-card-avatar class="img"></div>
-                    <mat-card-title style="font-weight: 600; font-size: xx-large;">
+                    <mat-card-title>
                         ¡Bienvenido!
-                        <img src="assets/form.png" alt="form image">
                     </mat-card-title>
                     <p>Por favor llena los siguientes datos</p>
                 </mat-card-header>
@@ -166,9 +164,9 @@
                 </mat-card-content>
 
                 <mat-card-actions>
-                    <p style="text-align: center; margin-bottom: 10px;">
-                        ¿Ya tienes una cuenta? 
-                        <a [routerLink]="['/login']" style="font-weight: 500;">Iniciar Sesión</a>
+                    <p>
+                        ¿Ya tienes una cuenta?
+                        <a [routerLink]="['/login']">Iniciar Sesión</a>
                     </p>
                     <button mat-flat-button color="primary" class="form-cred" type="submit" [disabled]="registerForm.invalid">
                         Crear Cuenta
@@ -176,9 +174,5 @@
                 </mat-card-actions>
             </mat-card>
         </form>
-
-        <div class="right-img">
-            <img src="assets/img.png" style="border-radius: 30px;" title="musulman's.kbom">
-        </div>
     </div>
 </div>
